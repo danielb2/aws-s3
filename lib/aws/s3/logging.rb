@@ -253,6 +253,11 @@ module AWS
           end
           alias_method :disable_logging, :disable_logging_for
           
+          # Returns name of target_bucket if logging is enabled, nil otherwise.
+          def logging_target_for(name = nil)
+            logging_status(bucket_name(name)).target_bucket
+          end
+
           # Returns true if logging has been enabled for the bucket named <tt>name</tt>.
           def logging_enabled_for?(name = nil)
             logging_status(bucket_name(name)).logging_enabled?
